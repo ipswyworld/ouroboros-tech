@@ -641,6 +641,34 @@ html.motion.ready .h-anim {
 .measure { max-width: 62ch; }
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
+/* ---- Long-form article (insights / case studies) -------------------------- */
+.article { max-width: 68ch; }
+.article > * + * { margin-top: 1.15rem; }
+.article .lead { font-size: var(--step-1); color: var(--ink); margin-bottom: 1.6rem; }
+.article p { color: var(--ink-2); line-height: 1.75; }
+.article h2 { font-size: var(--step-2); margin-top: 2.4rem; }
+.article a { color: var(--gold-ink); font-weight: 600; }
+.article a:hover { text-decoration: underline; }
+
+/* ---- Legal pages ---------------------------------------------------------- */
+.legal { max-width: 68ch; }
+.legal h2 { font-size: var(--step-2); margin-top: 2.6rem; margin-bottom: .7rem; }
+.legal h2:first-child { margin-top: 0; }
+.legal p { color: var(--ink-2); line-height: 1.75; }
+.legal p + p { margin-top: .9rem; }
+.legal a { color: var(--gold-ink); font-weight: 600; }
+.legal a:hover { text-decoration: underline; }
+
+/* ---- Empty states (no published content yet) ------------------------------ */
+.empty-state {
+  border: 1px dashed var(--line-2); border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.2rem); text-align: center; background: var(--surface);
+}
+.empty-state h3 { font-size: var(--step-1); margin-bottom: .5rem; }
+.empty-state p { color: var(--ink-3); margin-inline: auto; max-width: 46ch; }
+.index-list__main h3 a { transition: color .2s; }
+.index-list__main h3 a:hover { color: var(--gold-ink); }
+
 /* Skip to content — visible only on keyboard focus */
 .skip-link {
   position: fixed; top: -60px; left: 12px; z-index: 200;

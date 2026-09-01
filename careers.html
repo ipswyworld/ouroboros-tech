@@ -20,6 +20,8 @@
 <meta name="twitter:image" content="https://ipswyworld.github.io/ouroboros-tech/assets/img/og.png">
 <meta name="theme-color" content="#0A2472">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/icon-512.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,6 +39,7 @@
   <nav class="nav__links" data-nav-links aria-label="Primary">
     <a class="nav__link" href="products.html">Products</a>
     <a class="nav__link" href="work.html">Work</a>
+    <a class="nav__link" href="insights.html">Insights</a>
     <a class="nav__link" href="research.html">Research</a>
     <a class="nav__link" href="about.html">About</a>
     <a class="nav__link" href="careers.html" aria-current="page">Careers</a>
@@ -96,13 +99,15 @@
     <span class="kicker reveal">Where we're growing</span>
     <h2 class="reveal" style="margin-top:.6rem">The people we're always talking to</h2>
     <p class="reveal" style="margin-top:.8rem;color:var(--ink-2);max-width:60ch">We hire in tracks rather than posting a wall of listings. If your work fits one of these, send it, a specific opening or not, we'll make time to talk.</p>
-    <ul class="roles reveal" data-stagger>
+    <div class="reveal" data-roles>
+    <ul class="roles" data-stagger>
       <li><div class="roles__title"><h3>Blockchain / distributed systems engineers</h3><p>Consensus, settlement, and the guarantees underneath them.</p></div><span class="roles__meta">Nairobi / hybrid</span></li>
       <li><div class="roles__title"><h3>AI / ML engineers &amp; researchers</h3><p>Models that reason about finance and explain themselves.</p></div><span class="roles__meta">Nairobi / hybrid</span></li>
       <li><div class="roles__title"><h3>Data engineers</h3><p>Pipelines and lineage for data people bet decisions on.</p></div><span class="roles__meta">Nairobi / hybrid</span></li>
       <li><div class="roles__title"><h3>Full-stack product engineers</h3><p>The interfaces where all of it meets a real user.</p></div><span class="roles__meta">Nairobi / hybrid</span></li>
       <li><div class="roles__title"><h3>Design &amp; product</h3><p>People who make hard systems feel obvious to use.</p></div><span class="roles__meta">Nairobi / hybrid</span></li>
     </ul>
+    </div>
   </div>
 </section>
 
@@ -129,21 +134,22 @@
         </a>
         <p style="margin-top:1rem;max-width:34ch">The whole stack, built by one company. Nairobi, Kenya.</p>
       </div>
-      <div><h2>Company</h2><div class="footer__links">
-        <a href="products.html">Products</a><a href="work.html">Work</a><a href="research.html">Research</a><a href="about.html">About</a><a href="careers.html">Careers</a>
-      </div></div>
+      <div><h2>Company</h2><div class="footer__links"><a href="products.html">Products</a><a href="work.html">Work</a><a href="insights.html">Insights</a><a href="case-studies.html">Case studies</a><a href="research.html">Research</a><a href="about.html">About</a><a href="careers.html">Careers</a></div></div>
       <div><h2>Contact</h2><div class="footer__links">
         <a href="mailto:hello@ouroboros.tech">hello@ouroboros.tech</a><a href="contact.html">Start a conversation</a><span style="color:var(--d-ink-3)">Nairobi · EAT (UTC+3)</span>
       </div></div>
     </div>
     <div class="footer__bottom">
       <span>© <span id="yr">2026</span> Ouroboros Tech. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
       <span class="mono">Nairobi · 1.2921° S, 36.8219° E</span>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/content.js"></script>
+<script>OB.renderRoles('[data-roles]');</script>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>

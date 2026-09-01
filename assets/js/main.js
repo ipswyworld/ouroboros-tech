@@ -121,18 +121,51 @@
   const form = document.querySelector("[data-contact]");
   if (form) {
     const note = form.querySelector("[data-form-note]");
-    form.addEventListener("submit", (e) => {
+    const submit = form.querySelector('button[type="submit"]');
+    const endpoint = (form.dataset.endpoint || "").trim();
+    const val = (n) => (form.elements[n]?.value || "").trim();
+
+    const mailtoFallback = () => {
+      const subject = `New enquiry: ${val("topic")} (${val("name")})`;
+      const body = `Name: ${val("name")}\nEmail: ${val("email")}\nTopic: ${val("topic")}\n\n${val("message")}\n`;
+      window.location.href =
+        `mailto:hello@ouroboros.tech?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (note) {
+        note.textContent = "Your email app should have opened with everything filled in. If it didn't, write to hello@ouroboros.tech.";
+        note.style.color = "var(--gold-ink)";
+      }
+    };
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      const v = (n) => (form.elements[n]?.value || "").trim();
-      const subject = `New enquiry — ${v("topic")} (${v("name")})`;
-      const body =
-        `Name: ${v("name")}\nEmail: ${v("email")}\nTopic: ${v("topic")}\n\n${v("message")}\n`;
-      const href = `mailto:hello@ouroboros.tech?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = href;
-      if (note) {
-        note.textContent = "Your email app should have opened with everything filled in. If it didn't, write us at hello@ouroboros.tech.";
-        note.style.color = "var(--gold-ink)";
+
+      // No endpoint configured: hand off to the visitor's email client.
+      if (!endpoint) return mailtoFallback();
+
+      const original = submit ? submit.innerHTML : "";
+      if (submit) { submit.disabled = true; submit.textContent = "Sending…"; }
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            name: val("name"), email: val("email"),
+            topic: val("topic"), message: val("message"),
+          }),
+        });
+        if (!res.ok) throw new Error("bad status " + res.status);
+        form.reset();
+        if (note) {
+          note.textContent = "Thanks. Your message reached us, and the right person will reply.";
+          note.style.color = "var(--gold-ink)";
+        }
+        if (submit) submit.textContent = "Sent";
+        return;
+      } catch {
+        // Endpoint unreachable: never lose the message, hand it to email instead.
+        if (submit) { submit.disabled = false; submit.innerHTML = original; }
+        mailtoFallback();
       }
     });
   }
