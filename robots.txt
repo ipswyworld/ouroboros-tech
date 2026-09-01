@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ipswyworld.github.io/ouroboros-tech/sitemap.xml
