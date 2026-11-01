@@ -441,6 +441,7 @@ html.motion.ready .h-anim {
 .feature__body h3 { color: #fff; font-size: var(--step-3); }
 .feature__body p { color: var(--d-ink-2); max-width: 52ch; }
 .feature__tag { color: var(--gold-bright); letter-spacing: .12em; text-transform: uppercase; }
+.feature .link-arw { color: var(--gold-bright); } /* feature card is dark but not .drench */
 .feature__art { display: flex; justify-content: center; }
 .feature__art img { width: 100%; max-width: 220px; opacity: .95; filter: drop-shadow(0 0 26px rgba(236,196,64,.28)); }
 
