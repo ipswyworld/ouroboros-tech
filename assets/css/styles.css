@@ -785,6 +785,24 @@ html.motion.ready .sig .flag { animation: pop .55s var(--ease-out) 1.7s both; }
   .proj-next { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* ---- Team ------------------------------------------------------------------ */
+.team { list-style: none; padding: 0; margin: 0; }
+.team__row { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: clamp(1.1rem, 3vw, 2rem); padding: 1.8rem 0; border-top: 1px solid var(--line-2); }
+.team__row:last-child { border-bottom: 1px solid var(--line-2); }
+.team__photo, .team__init { width: 104px; height: 104px; border-radius: 14px; }
+.team__photo { object-fit: cover; background: var(--paper-2); }
+.team__init { display: grid; place-items: center; background: var(--d-grad); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; letter-spacing: -.02em; }
+.team__row h3 { font-size: var(--step-1); }
+.team__role { color: var(--gold-ink); margin-top: .3rem; }
+.team__bio { color: var(--ink-2); margin-top: .7rem; max-width: 60ch; line-height: 1.7; }
+.team__row .link-arw { margin-top: .8rem; }
+@media (max-width: 560px) {
+  .team__row { grid-template-columns: 72px minmax(0, 1fr); }
+  .team__photo, .team__init { width: 72px; height: 72px; border-radius: 12px; font-size: 1.4rem; }
+}
+.text-link { color: var(--gold-ink); font-weight: 600; }
+.text-link:hover { text-decoration: underline; }
+
 /* ---- Long-form article (insights / case studies) -------------------------- */
 .article { max-width: 68ch; }
 .article > * + * { margin-top: 1.15rem; }

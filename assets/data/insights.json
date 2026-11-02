@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "ccd0a89b-384f-45ff-8ef5-13d9438f313f",
+    "slug": "agents-can-use-the-chain-without-holding-a-private-key",
+    "title": "Agents can use the chain without holding a private key",
+    "excerpt": "Giving an AI agent a key means trusting it with everything the account can do. On the Ouroboros chain the gateway holds the keys and the owner sets the limits.",
+    "body": "Connecting a language model to a blockchain is the easy part. The question that matters is what the agent is allowed to do once it is connected.\n\nThe usual answer is to hand the agent a private key and trust it. That works until the agent is wrong, manipulated or simply misconfigured, because a key has no sense of limits. Whoever holds it can do anything the account can do.\n\nOn the Ouroboros chain the agent never holds a key. The gateway holds the keys, and the owner grants the agent a capability envelope. The envelope is scoped by tool, contract, recipient, value ceiling, rate and expiry. A request outside the envelope is refused at the gateway, so an agent cannot act outside its grant, however it is prompted.\n\nTwenty tools across read, action and discovery tiers are reachable over MCP by any language model, and there is a path for a human to approve what an agent proposes.\n\nThis is still in development. We have not published measurements or developer documentation for it yet, and when we do they will appear on the chain page.",
+    "tags": [
+      "blockchain",
+      "agents"
+    ],
+    "publishedAt": "2026-11-02T07:02:01.000Z",
+    "updatedAt": "2026-11-02T07:02:01.000Z"
+  }
+]

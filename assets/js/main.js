@@ -1,10 +1,10 @@
-/* Ouroboros Tech — interaction layer: splash, reveals, nav */
+/* Ouroboros Tech interaction layer: splash, reveals, nav */
 (() => {
   "use strict";
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* Trigger the hero handoff entrance (html.ready). Called once, at the moment
-     the page is revealed — as the splash clears, or immediately otherwise. */
+     the page is revealed (as the splash clears, or immediately otherwise). */
   let readyDone = false;
   const markReady = () => {
     if (readyDone) return; readyDone = true;

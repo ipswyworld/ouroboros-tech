@@ -80,6 +80,37 @@
     if (note) note.hidden = true;
   }
 
+  /* ---- Team -------------------------------------------------------------- */
+  // Only same-site asset paths for photos and https links for profiles; admin
+  // content is trusted but still constrained rather than dropped into attributes raw.
+  const safePhoto = (p) => /^assets\/[\w\-./]+\.(jpe?g|png|webp|avif)$/i.test(String(p || "")) && !String(p).includes("..") ? p : "";
+  const safeLink = (u) => /^https:\/\//i.test(String(u || "")) ? u : "";
+  const initials = (n) => String(n || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+  async function renderTeam(sel) {
+    const host = document.querySelector(sel); if (!host) return;
+    const rows = await load("team");
+    if (!rows.length) return void (host.innerHTML =
+      empty("We are not introducing the team here yet", "When we do, it will be the people who do the work, in their own words."));
+    host.innerHTML = `<ul class="team">` + rows.map((r) => {
+      const photo = safePhoto(r.photo), link = safeLink(r.link);
+      const face = photo
+        ? `<img class="team__photo" src="${esc(photo)}" alt="Photo of ${esc(r.title)}" width="104" height="104" loading="lazy">`
+        : `<span class="team__init" aria-hidden="true">${esc(initials(r.title))}</span>`;
+      return `<li class="team__row">${face}<div>
+        <h3>${esc(r.title)}</h3>
+        ${r.role ? `<p class="team__role mono">${esc(r.role)}</p>` : ""}
+        ${r.bio ? `<p class="team__bio">${esc(r.bio)}</p>` : ""}
+        ${link ? `<a class="link-arw" href="${esc(link)}" rel="noopener">Profile <span class="arw">&rarr;</span></a>` : ""}
+      </div></li>`;
+    }).join("") + `</ul>`;
+  }
+
+  async function teamLink(sel) {
+    const el = document.querySelector(sel); if (!el) return;
+    if ((await load("team")).length) el.hidden = false;
+  }
+
   /* ---- Detail renderer -------------------------------------------------- */
   async function renderDetail(kind, opts) {
     const slug = qs("slug");
@@ -110,5 +141,5 @@
     }
   }
 
-  window.OB = { renderInsights, renderCases, renderRoles, renderDetail };
+  window.OB = { renderInsights, renderCases, renderRoles, renderTeam, teamLink, renderDetail };
 })();
